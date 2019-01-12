@@ -43,7 +43,7 @@ scheduleTasks(tasks, isFIFO);
 ## Notes
 
 In order to use it efficiently, it is crucial to have multiple small partitioned tasks, instead of long-running ones
-as each idle period has at most 50ms deadlines. Tasks will be executed in *Last In First Out Order* by default.
+as each idle period has at most 50ms deadlines. Tasks will be executed in *Last In First Out* order by default.
 
 
 # License
