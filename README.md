@@ -4,7 +4,7 @@
       src="https://developers.google.com/web/updates/images/2015-08-27-using-requestidlecallback/frame.jpg"
       alt="bta"
       title="bta"
-      width="300"
+      width="500"
   >
 </h1>
 <p align="center" style="font-size: 1.2rem;">
