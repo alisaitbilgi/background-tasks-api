@@ -1,9 +1,11 @@
 type RequestIdleCallbackHandle = any;
 type RequestIdleCallbackOptions = { timeout: number; };
-type RequestIdleCallbackDeadline = {
+export type RequestIdleCallbackDeadline = {
   readonly didTimeout: boolean;
   timeRemaining: (() => number);
 };
+export type api = (tasks: any | [], isFIFO?: boolean) => void;
+
 declare global {
   interface Window {
     requestIdleCallback: ((
@@ -30,7 +32,9 @@ window.requestIdleCallback =
 
 // Since we have at most 50ms idle periods,
 // Last In First Out execution order is encouraged as selected by default.
-export function scheduleTasks(tasks = [], isFIFO = false) {
+export default function scheduleTasks(tasks = [], isFIFO = false): api | undefined {
+  if (!Array.isArray(tasks) || tasks.length === 0) return;
+
   function nonEssentialWork(deadline: RequestIdleCallbackDeadline) {
     while (deadline.timeRemaining() > 0 && tasks.length > 0) {
       const task: any = tasks[isFIFO ? 'shift' : 'pop']();

@@ -1,6 +1,6 @@
 {
   "name": "background-tasks-api",
-  "version": "1.0.0",
+  "version": "1.1.4",
   "main": "dist/index.js",
   "description": "Execute background tasks on main thread's idle periods",
   "repository": {
@@ -14,7 +14,9 @@
   },
   "homepage": "https://github.com/alisaitbilgi/background-tasks-api#readme",
   "scripts": {
-    "build": "rm -rf dist && babel ./src --out-dir dist --extensions \".ts,.tsx\"",
+    "build": "npm run build:types && npm run build:js",
+    "build:types": "tsc --emitDeclarationOnly",
+    "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
     "lint": "tslint -c tslint.json  -p tsconfig.json -t verbose 'src/**/*.{ts,tsx}'"
   },
   "devDependencies": {
